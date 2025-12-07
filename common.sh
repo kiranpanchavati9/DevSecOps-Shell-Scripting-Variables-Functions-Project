@@ -90,3 +90,24 @@ python_setup() {
 
   systemd_setup
 }
+
+
+java_setup() {
+  echo -e "${color}Install Maven${nocolor}"
+  dnf install maven -y &>>$LOGFILE
+  check_status $?
+
+  app_prereq
+
+  cd /app
+
+  echo -e "${color}Download Java Dependencies & Build Application${nocolor}"
+  mvn clean package &>>$LOGFILE
+  check_status $?
+
+  echo -e "${color}Rename JAR file${nocolor}"
+  mv target/${component}-1.0.jar ${component}.jar &>>$LOGFILE
+  check_status $?
+
+  systemd_setup
+}
