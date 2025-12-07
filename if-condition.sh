@@ -26,80 +26,59 @@ else
 fi
 
 #!/bin/bash
-# ==========================
-# Bash Conditions Reference
-# ==========================
 
-# Conditions are used everywhere in scripts:
-# 1️⃣ String Check
-# 2️⃣ Number Check
-# 3️⃣ File Check
+# ======================================
+# Bash IF Condition Syntax + Examples
+# ======================================
 
-
-#######################################
-# 1️⃣ STRING CONDITION CHECKS
-#######################################
-
-# [ "$str1" = "$str2" ]    → True if strings are equal
-# [ "$str1" != "$str2" ]   → True if strings are NOT equal
-
-# [ -z "$str" ]            → True if string is EMPTY (zero length)
-# [ -n "$str" ]            → True if string is NOT EMPTY
-
-# Example:
-name="Kiran"
-if [ "$name" = "Kiran" ]; then
-  echo "Name matched!"
-fi
-
-
-#######################################
-# 2️⃣ NUMBER CONDITION CHECKS
-#######################################
-
-# [ num1 -eq num2 ]   → Equal
-# [ num1 -ne num2 ]   → Not equal
-# [ num1 -gt num2 ]   → Greater than
-# [ num1 -lt num2 ]   → Less than
-# [ num1 -ge num2 ]   → Greater than or equal
-# [ num1 -le num2 ]   → Less than or equal
-
-# Example:
+###################################
+# 1️⃣ Simple IF
+###################################
 a=10
 if [ $a -gt 5 ]; then
-  echo "a is greater than 5"
+  echo "Simple IF: a is greater than 5"
 fi
 
 
-#######################################
-# 3️⃣ FILE CONDITION CHECKS
-#######################################
+###################################
+# 2️⃣ IF - ELSE
+###################################
+b=3
+if [ $b -eq 10 ]; then
+  echo "IF ELSE: b equals 10"
+else
+  echo "IF ELSE: b is not equal to 10"
+fi
 
-# [ -e file ]   → True if file exists (file or directory)
-# [ -f file ]   → True if it is a regular file
-# [ -d dir ]    → True if directory exists
-# [ -r file ]   → True if readable
-# [ -w file ]   → True if writable
-# [ -x file ]   → True if executable
 
-# Example:
+###################################
+# 3️⃣ IF - ELIF - ELSE
+###################################
+c=8
+if [ $c -lt 5 ]; then
+  echo "ELIF: c < 5"
+elif [ $c -ge 5 ] && [ $c -lt 10 ]; then
+  echo "ELIF: c is between 5 and 9"
+else
+  echo "ELIF: c >= 10"
+fi
+
+
+###################################
+# 4️⃣ String Check
+###################################
+name="Kiran"
+if [ "$name" = "Kiran" ]; then
+  echo "STRING: Name matched!"
+fi
+
+
+###################################
+# 5️⃣ File Check
+###################################
 file="/etc/passwd"
 if [ -f "$file" ]; then
-  echo "File exists"
+  echo "FILE: File exists"
 else
-  echo "File not found"
+  echo "FILE: File not found"
 fi
-
-
-#######################################
-# 👍 Important Notes
-#######################################
-
-# ❗ Space required after [ and before ]
-# Correct: if [ $a -gt 5 ]; then
-# Wrong:  if [$a -gt 5]; then
-
-# Always quote strings → "$var"
-# Use && and || for multiple conditions
-
-
